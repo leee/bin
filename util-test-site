@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Author: E. Lee <elee@mit.edu>
+# Last updated on 2016 April 06
+#
+
+if [ $# -ne 3 ]; then
+    echo "Usage: `basename $0` HOST PORT SITE"
+    exit $E_BADARGS
+fi
+
+host=$1
+port=$2
+site=$3
+
+request="GET / HTTP/1.1
+Host: $site
+User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)
+
+"
+
+printf "$request" | nc $host $port >/dev/null 2>&1
