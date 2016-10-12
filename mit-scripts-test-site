@@ -1,0 +1,20 @@
+# Author: E. Lee <elee@mit.edu>
+# Last updated on 2016 April 06
+
+if [ $# -ne 1 ]; then
+    echo "Usage: `basename $0` SITE"
+    exit $E_BADARGS
+fi
+
+site=$1
+
+/usr/local/bin/time --format='%C: %e s' util-test-site shining-armor.mit.edu 080 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site shining-armor.mit.edu 443 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site bees-knees.mit.edu 080 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site bees-knees.mit.edu 443 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site cats-whiskers.mit.edu 080 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site cats-whiskers.mit.edu 443 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site busy-beaver.mit.edu 080 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site busy-beaver.mit.edu 443 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site pancake-bunny.mit.edu 080 $site
+/usr/local/bin/time --format='%C: %e s' util-test-site pancake-bunny.mit.edu 443 $site

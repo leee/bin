@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Author: E. Lee <elee@mit.edu>
+# Last updated on 2014 October 29
+#
+
+util-mail-blacklist 18.181.0.167
+util-mail-blacklist 18.181.0.228
+util-mail-blacklist 18.181.0.135
+util-mail-blacklist 18.181.0.234
+util-mail-blacklist 18.181.0.237

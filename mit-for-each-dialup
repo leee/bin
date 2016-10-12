@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Author: E. Lee <elee@mit.edu>
+# Last updated on 2014 October 29
+#
+
+# finger dialup twice
+finger dialup@finch.mit.edu >/dev/null 2>&1
+finger dialup@finch.mit.edu >/dev/null 2>&1
+
+for server in `finger dialup@finch.mit.edu | awk '{print $4}' | awk '{print $0".mit.edu"}' | sort -u`; do
+    ssh -K "$server" "$@"
+done
