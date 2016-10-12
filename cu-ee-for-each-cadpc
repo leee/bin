@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Author: E. Lee <el2823@ee.columbia.edu>
+# Last updated on 2014 October 29
+#
+
+for host in `seq -w 1 42 | awk '{print "cadpc" $0 ".ee.columbia.edu"}'`; do
+    ssh -t -o StrictHostKeyChecking=no "el2823@$host" "$@"
+done

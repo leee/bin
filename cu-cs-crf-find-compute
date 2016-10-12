@@ -1,0 +1,2 @@
+# @8.8.8.8 only because some DNSes don't like this many records
+dig +short compute.cs.columbia.edu @8.8.8.8 | xargs -L 1 dig +short -x | sort

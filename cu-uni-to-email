@@ -1,0 +1,23 @@
+#!/bin/bash
+
+while read line; do
+    ldap=$(ldapsearch -LLL -h ldap.columbia.edu -x -b "ou=People,o=Columbia University,c=US" -s sub "uni=$line" mail uni)
+    mail="$(echo "$ldap" | grep "mail" | cut -c 7-)"
+    uni="$(echo "$ldap" | grep "uni" | grep -v "Columbia" | cut -c 6-)"
+
+    if [ -n "$ldap" ]; then
+	echo "$mail" | grep -q barnard
+	if [ $? = 0 ]; then
+	    echo "$uni@barnard.edu"
+	else
+	    echo "$mail" | grep -q columbia
+	    if [ $? = 0 ]; then
+		echo "$uni@columbia.edu"
+	    else
+		echo "VERIFY - $line - $mail - $uni" 1>&2
+	    fi
+	fi
+    else
+	echo "FAIL - $line" 1>&2
+    fi
+done < "${1:-/dev/stdin}"
